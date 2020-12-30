@@ -113,7 +113,7 @@ class Lease_manager(threading.Thread):
         return self._is_started.is_set()
         
         
-server=DHCP_server(config.SERVER_IP,config.SERVER_PORT,config.IP_POOL,configRESERVED_IP, DHCP_handler)
+server=DHCP_server(config.SERVER_IP,config.SERVER_PORT,config.IP_POOL,config.RESERVED_IP, DHCP_handler)
 server.socket.setsockopt(socket.SOL_SOCKET, 25, config.INTERFACE+"\0")
 try:
     server.serve_forever()
