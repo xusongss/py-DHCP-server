@@ -17,8 +17,9 @@ class DHCP_server(SocketServer.ThreadingMixIn,SocketServer.UDPServer):
         self.port=port
         self.ip_pool = network_utils.get_ip_pool_from_string(ip_pool)
         self.logger.debug("IP addresses pool: %s",str(self.ip_pool))
-        self.current_ip = self.ip_pool[0]
-        self.attributed_ips = {self.ip : "server","10.0.0.0":"reserved"}
+        #self.current_ip = self.ip_pool[0]
+        self.current_ip = "192.168.114.100"
+        self.attributed_ips = {self.ip : "server","192.168.114.1":"reserved"}
         self.lease_handler = Lease_manager(self)
     
     #Returns the next available IP in the pool        

@@ -7,14 +7,15 @@ Created on Dec 20, 2014
 '''
     SERVER CONFIGURATION
 '''
-SERVER_IP="10.0.0.1"
+SERVER_IP="192.168.114.1"
 SERVER_PORT=67
-INTERFACE="eth0"
+INTERFACE="wlan0"
+INTERFACE_HWADRR="b8:27:eb:1e:e6:ce"
 
 '''
     SUBNET CONFIGURATION
 '''
-IP_POOL="10.0.0.0/8" #We might want to change that to make it more flexible (you don't necessarily want to be able to attribute every address in the subnet 
+IP_POOL="192.168.114.1/24" #We might want to change that to make it more flexible (you don't necessarily want to be able to attribute every address in the subnet 
 BROADCAST_ADDR="default"
 
 
@@ -23,7 +24,7 @@ LEASE_TIME=200
 #DNS_SERVERS = ["8.8.8.8"]
 #NTP_SERVERS = [SERVER_IP]
 ##List of IP addresses for router on the local subnet, by order of preference.
-ROUTERS = ["10.0.0.1"]
+ROUTERS = ["192.168.114.1"]
 
 #Keep to False unless you know what you're doing
 #See http://tools.ietf.org/html/rfc2563
