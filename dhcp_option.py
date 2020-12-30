@@ -73,7 +73,7 @@ def handle_option_request(request,option_number):
     elif option_number in [116]:
         option = create_bool_option(option_number)
     else:
-        logger.debug('Option number "%s" is not supported',DHCP_option.dhcp_options[option_number])
+        #logger.debug('Option number "%s" is not supported',DHCP_option.dhcp_options[option_number])
         return
     
     if option is None:
