@@ -18,6 +18,7 @@ INTERFACE_HWADRR="b8:27:eb:1e:e6:ce"
 IP_POOL="192.168.114.1/24" #We might want to change that to make it more flexible (you don't necessarily want to be able to attribute every address in the subnet 
 BROADCAST_ADDR="default"
 
+RESERVED_IP={"192.168.114.0":"reserved1",SERVER_IP : "reserved2", "192.168.114.2":"reserved3"}
 
 #Lease time of a DHCP address in seconds
 LEASE_TIME=200

@@ -9,7 +9,7 @@ import config, network_utils
 from dhcp_handler import DHCP_handler
 
 class DHCP_server(SocketServer.ThreadingMixIn,SocketServer.UDPServer):
-    def __init__(self,ip,port,ip_pool,RequestHandlerClass):
+    def __init__(self,ip,port,ip_pool,reserved,RequestHandlerClass):
         self.logger = self.create_logger()
         SocketServer.UDPServer.__init__(self, ("",port), RequestHandlerClass)
         self.logger.debug('py-DHCP-server starting...')
@@ -17,9 +17,10 @@ class DHCP_server(SocketServer.ThreadingMixIn,SocketServer.UDPServer):
         self.port=port
         self.ip_pool = network_utils.get_ip_pool_from_string(ip_pool)
         self.logger.debug("IP addresses pool: %s",str(self.ip_pool))
-        #self.current_ip = self.ip_pool[0]
-        self.current_ip = "192.168.114.100"
-        self.attributed_ips = {self.ip : "server","192.168.114.1":"reserved"}
+        self.current_ip = self.ip_pool[0]
+        #self.current_ip = "192.168.114.100"
+        #self.attributed_ips = {self.ip : "server","192.168.114.1":"reserved"}
+        self.attributed_ips = reserved
         self.lease_handler = Lease_manager(self)
     
     #Returns the next available IP in the pool        
@@ -112,7 +113,7 @@ class Lease_manager(threading.Thread):
         return self._is_started.is_set()
         
         
-server=DHCP_server(config.SERVER_IP,config.SERVER_PORT,config.IP_POOL,DHCP_handler)
+server=DHCP_server(config.SERVER_IP,config.SERVER_PORT,config.IP_POOL,configRESERVED_IP, DHCP_handler)
 server.socket.setsockopt(socket.SOL_SOCKET, 25, config.INTERFACE+"\0")
 try:
     server.serve_forever()
